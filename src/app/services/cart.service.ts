@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { Product } from '../models/products';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class CartService {
   ];
   constructor() { }
 
-  addToCart(){
+  addToCart(product:Product){
     this.cartCount.next(this.cartItems.length);
   }
 }

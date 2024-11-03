@@ -1,1 +1,21 @@
-<p>home works!</p>
+<div class="container mt-5">
+    <div class="row d-flex">
+        <ng-container *ngIf="(products$|async) as products; else noProducts">
+            <div *ngFor="let product of products" class="col-md-4 mb-3 d-flex">
+                <div class="card flex-fill h-100">
+                  <img [src]="product.image" class="card-img-top" alt="Product Image">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p><strong>Price:</strong> {{ product.price | currency }}</p>
+                    <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+        </ng-container>
+    </div>
+  </div>
+
+  <ng-template #noProducts>
+    <h1>No products available.</h1>
+  </ng-template>
