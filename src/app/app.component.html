@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">My Store</a>
+    <a class="navbar-brand fw-bold fs-5" routerLink="/login">Abdul Moiz Store</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -31,8 +31,8 @@
         <li class="nav-item position-relative">
           <a class="nav-link" routerLink="/cart">
             <i class="fas fa-shopping-cart"></i>
-            <span *ngIf="cartItemCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {{ cartItemCount }}
+            <span *ngIf="(cartItemCount$ | async) > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ (cartItemCount$ | async)  }}
             </span>
           </a>
         </li>
