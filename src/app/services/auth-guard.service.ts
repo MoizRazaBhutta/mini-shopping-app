@@ -15,4 +15,10 @@ export class AuthGuardService implements CanActivate {
     this.router.navigate(['/login']);
     return false;
   }
+  isLoggedIn() {
+    if(localStorage.getItem('username') && localStorage.getItem('email')) {
+      return true;
+    }
+    return false;
+  }
 }
