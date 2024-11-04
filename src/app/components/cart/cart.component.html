@@ -1,1 +1,32 @@
-<p>cart works!</p>
+<div class="container mt-5">
+    <h2>Your Cart</h2>
+    <div *ngIf="(cartItems$ | async) as cartItems">
+        <div *ngIf="cartItems.length > 0; else emptyCart">
+            <ul class="list-group">
+              <li *ngFor="let item of cartItems" class="list-group-item">
+                {{ item.title }} - {{ item.price | currency }}
+              </li>
+            </ul>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-primary mt-3" (click)="checkout()">Checkout</button>
+                <button class="btn btn-warning mt-3" (click)="clearCart()">Clear cart</button>
+                <p class="fw-bold mt-3 ms-auto">Total: {{ getTotal(cartItems) | currency }}</p>
+            </div>
+            
+        </div>
+    </div>
+    <ng-template #emptyCart>
+      <p>Your cart is empty.</p>
+    </ng-template>
+  
+    <ng-container *ngIf="showPopup">
+      <div class="popup">
+        <div class="popup-content">
+          <h4>Thank you for your order!</h4>
+          <p>We have received your order.</p>
+          <button class="btn btn-secondary" (click)="closePopup()">Close</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  

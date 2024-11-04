@@ -7,13 +7,25 @@ import { Product } from '../models/products';
 })
 export class CartService {
   cartCount:BehaviorSubject<number>=new BehaviorSubject<number>(0);
-  cartCount$=this.cartCount.asObservable();
-  cartItems:any[]=[
-    
-  ];
+  cartItems:BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+
+  cartItems$ = this.cartItems.asObservable();
+  cartCount$ = this.cartCount.asObservable();
   constructor() { }
 
   addToCart(product:Product){
-    this.cartCount.next(this.cartItems.length);
+    const currentItems = this.cartItems.getValue();
+    currentItems.push(product);
+    this.cartItems.next(currentItems);
+    this.cartCount.next(currentItems.length);
+  }
+
+  clearCart() {
+    this.cartItems.next([]); 
+    this.cartCount.next(0); 
+  }
+
+  getCartItems(): Product[] {
+    return this.cartItems.getValue(); 
   }
 }
