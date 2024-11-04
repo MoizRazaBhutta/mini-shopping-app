@@ -1,1 +1,58 @@
-<p>add-product works!</p>
+<div class="container mt-5">
+    <h2>Add New Product</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" formControlName="title" />
+        <div *ngIf="productForm.get('title')?.invalid && (productForm.get('title')?.dirty || productForm.get('title')?.touched)" class="text-danger">
+          Title is required.
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="price" formControlName="price" />
+        <div *ngIf="productForm.get('price')?.invalid && (productForm.get('price')?.dirty || productForm.get('price')?.touched)" class="text-danger">
+          Price must be a positive number.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" formControlName="description"></textarea>
+        <div *ngIf="productForm.get('description')?.invalid && (productForm.get('description')?.dirty || productForm.get('description')?.touched)" class="text-danger">
+          Description is required.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="image" class="form-label">Image URL</label>
+        <input type="text" class="form-control" id="image" formControlName="image" />
+        <div *ngIf="productForm.get('image')?.invalid && (productForm.get('image')?.dirty || productForm.get('image')?.touched)" class="text-danger">
+          A valid image URL is required.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <input type="text" class="form-control" id="category" formControlName="category" />
+        <div *ngIf="productForm.get('category')?.invalid && (productForm.get('category')?.dirty || productForm.get('category')?.touched)" class="text-danger">
+          Category is required.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">Add Product</button>
+    </form>
+  </div>
+  
+
+  <ng-container *ngIf="showPopup">
+    <div class="popup">
+      <div class="popup-content">
+        <h4>Confirmation of new product</h4>
+        <p>Are you sure you want to add this product?</p>
+        <button class="btn btn-secondary ms-2" (click)="closePopup()">Cancel</button>
+        <button class="btn btn-secondary ms-2" (click)="confirm()">Confirm</button>
+      </div>
+    </div>
+  </ng-container>

@@ -22,6 +22,10 @@ export class ProductService {
     );
   }
 
+  addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(`${this.baseUrl}/products`, product);
+  }
+
   private storeProducts(products: Product[]): void {
     localStorage.setItem('products', JSON.stringify(products));
   }
