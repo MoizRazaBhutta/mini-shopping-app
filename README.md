@@ -1,27 +1,36 @@
-# MiniShoppingApp
+# Mini Product Store
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
+Welcome to the Mini Product Store! This is a simple Angular application that allows users to browse products, add new products (for logged-in users), manage a shopping cart, and view a dashboard of users.
 
-## Development server
+## Live Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+You can view the live application at the following link:
 
-## Code scaffolding
+[Mini Product Store](https://abdul-moiz-store.netlify.app)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- **Home**: Displays all products fetched from the Fake Store API.
+- **Add Product**: Allows logged-in users to add new products.
+- **Cart**: Users can add items to their shopping cart and view the total number of items.
+- **Dashboard**: Displays a list of users (only accessible to logged-in users).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Technologies Used
 
-## Running unit tests
+- Angular (version 14)
+- Bootstrap for styling
+- Font Awesome for icons
+- Reactive Forms for form handling
+- Fake Store API for product data
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+To run this project locally, follow these steps:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Clone the repository:
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   ```bash
+   git clone <repository-url>
+   ```
+2. Run npm install
+3. Serve the app `ng serve`

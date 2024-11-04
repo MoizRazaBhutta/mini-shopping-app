@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
-
+  isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLoggedInObservable = this.isLoggedIn$.asObservable();
   constructor(private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(localStorage.getItem('username') && localStorage.getItem('email')) {
@@ -17,8 +18,10 @@ export class AuthGuardService implements CanActivate {
   }
   isLoggedIn() {
     if(localStorage.getItem('username') && localStorage.getItem('email')) {
-      return true;
+      this.isLoggedIn$.next(true);
     }
-    return false;
+    else{
+      this.isLoggedIn$.next(false);
+    }
   }
 }

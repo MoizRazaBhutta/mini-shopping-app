@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './services/cart.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AuthGuardService } from './services/auth-guard.service';
 
 @Component({
@@ -11,11 +11,12 @@ import { AuthGuardService } from './services/auth-guard.service';
 })
 export class AppComponent implements OnInit {
   cartItemCount$:Observable<number>;
-  isLoggedIn: boolean = false;
+  isLoggedIn$: Observable<boolean>;
   constructor(private cartService: CartService,private router: Router,private authService:AuthGuardService) {}
   ngOnInit() {
     this.cartItemCount$ =this.cartService.cartCount$;
-    this.isLoggedIn = this.authService.isLoggedIn();
+    this.authService.isLoggedIn();
+    this.isLoggedIn$ = this.authService.isLoggedInObservable;
   }
 
 
@@ -23,8 +24,8 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('username');
     localStorage.removeItem('email');
     localStorage.removeItem('products');
-    // localStorage.removeItem('cartItemCount');
     this.cartService.cartCount.next(0); 
+    this.authService.isLoggedIn$.next(false);
     this.router.navigate(['/login']); 
   }
 
