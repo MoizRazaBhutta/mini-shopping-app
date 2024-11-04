@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<div class="container mt-5">
+    <div *ngIf="(users$ | async) as users;else noUsers">
+      <app-users-list [users]="users"></app-users-list>
+    </div>
+  </div>
+
+  <ng-template #noUsers>
+    <h1>No Users to show.</h1>
+  </ng-template>

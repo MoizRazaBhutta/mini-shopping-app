@@ -10,6 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UsersListComponent } from './components/users-list/users-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     AddProductComponent,
     CartComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
